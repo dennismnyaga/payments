@@ -35,7 +35,7 @@
 
             <!-- Repository Details and Payment Options -->
             <div class="rounded d-flex flex-column shadow-lg " style="width: 320px; height: 320px;">
-                <h4 class="text-center mb-3 fs-2 py-4 border-bottom fw-bold">$3</h4>
+                <h4 class="text-center mb-3 fs-2 py-4 border-bottom fw-bold">$1</h4>
 
 
                 <div class="px-4">
@@ -74,7 +74,7 @@
                 createOrder: function (data, actions) {
                     return actions.order.create({
                         purchase_units: [{
-                            amount: { value: '3.00' }
+                            amount: { value: '1.00' }
                         }]
                     });
                 },
