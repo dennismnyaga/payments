@@ -4,21 +4,24 @@
 
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase Code Repository</title>
     <link rel="stylesheet" href="{% static 'payments/css/bootstrap.min.css' %}">
 
 
-    <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&components=buttons&vault=true"></script>
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&components=buttons&vault=true"></script> -->
+    <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&components=buttons&vault=false&intent=capture&currency=USD"></script>
 
-    <!-- <script src="https://sandbox.paypal.com/sdk/js?client-id={{ paypal_client_id }}&components=buttons,card-fields&intent=capture&currency=USD"></script> -->
-    <!-- <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}&currency=USD"></script> -->
 </head>
 
 <body>
     <div class="container-sm">
-        <div class="d-flex justify-content-center align-items-center vh-100">
+        <!-- <div class="d-flex flex-column-reverse flex-md-row justify-content-center align-items-center vh-100"> -->
+            <div class="d-flex gap-2 flex-column-reverse flex-md-row justify-content-center align-items-center vh-100">
+                
             <!-- Repository Image -->
+            
             <div>
                 {% if repository.code_emage %}
                 <img class="rounded w-100 h-100" src="{{ repository.code_emage.url }}" alt="repository image"
@@ -31,27 +34,13 @@
             </div>
 
             <!-- Repository Details and Payment Options -->
-            <div class="rounded d-flex flex-column shadow-lg ms-4" style="width: 320px; height: 320px;">
+            <div class="rounded d-flex flex-column shadow-lg " style="width: 320px; height: 320px;">
                 <h4 class="text-center mb-3 fs-2 py-4 border-bottom fw-bold">$3</h4>
 
 
                 <div class="px-4">
                     <input id="email" class="form-control mb-4" type="email" placeholder="Email Address" />
 
-                    <!-- Payment Method Options -->
-                    <!-- <div class="border mt-4">
-                        <div class="border-bottom d-flex align-items-center px-3 py-2">
-                            <input type="radio" name="payment-method" id="paypal-option" class="form-check-input me-2"
-                                onchange="handlePaypalButtonClick()" />
-                            <label class="form-check-label" for="paypal-option">Paypal</label>
-                        </div>
-
-                        <div class="d-flex align-items-center px-3 py-2">
-                            <input type="radio" name="payment-method" id="card-option" class="form-check-input me-2"
-                                onchange="handleCardButtonClick()" />
-                            <label class="form-check-label" for="card-option">Card</label>
-                        </div>
-                    </div> -->
                     <div id="paypal-button-container" style="display: none;" class="my-3 "></div>
                 </div>
             </div>
@@ -107,6 +96,10 @@
         } else {
             console.error("PayPal Buttons function is not available.");
         }
+        document.getElementById("paypal-button-container").addEventListener("click", function (e) {
+    e.preventDefault();
+});
+
 
         function saveEmailToDB(email) {
             console.log('saveEmailToDB function called with email:', email);
@@ -132,3 +125,6 @@
 </body>
 
 </html>
+
+
+
